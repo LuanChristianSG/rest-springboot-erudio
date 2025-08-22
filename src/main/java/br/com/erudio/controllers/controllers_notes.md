@@ -18,3 +18,6 @@ Ex: http://localhost:8080/endpoint?parametro=teste
 
 # @RequestParam(value="paramName", defaultValue="defaultValue")
 Possibilita que o método leia o parâmetro vindo da requisição
+
+# @ControllerAdvice
+Se aplica a todos os controllers
