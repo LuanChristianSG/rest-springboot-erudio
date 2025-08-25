@@ -1,16 +1,29 @@
 package br.com.erudio.model;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="first_name", nullable=false, length=80)
     private String firstName;
+
+    @Column(name="last_name", nullable=false, length=80)
     private String lastName;
+
+    @Column(nullable = false, length=100) //o certo não é ser texto?
     private String address;
+
+    @Column(nullable = false, length=6) //nao especificar nome significa que é igual
     private String gender;
 
     public Person() {

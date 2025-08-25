@@ -1,1 +1,15 @@
-spring.application.name=rest-springboot-erudio
+spring:
+  application:
+    name: rest-springboot-erudio
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sql10.freesqldatabase.com:3306/sql10796111?useTimezone=true&serverTimezone=UTC
+    username: sql10796111
+    password: IDdHF6XLSN
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: false

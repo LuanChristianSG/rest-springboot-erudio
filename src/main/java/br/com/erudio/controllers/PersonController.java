@@ -31,16 +31,24 @@ public class PersonController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person findById(@PathVariable("id") String id){
+    public Person findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 
     @RequestMapping(
-    method = RequestMethod.POST,
+    method = RequestMethod.PUT,
     consumes = MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE)
     public Person create(@RequestBody Person person){
-        return service.create(person);
+        return service.update(person);
+    }
+
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
     }
 
 }
