@@ -48,4 +48,9 @@ public class PersonServices { //mf=serviceImpl
         person.setGender("Female");
         return person;
     }
+
+    public Person create(Person person){
+        logger.info("Creating one Person!");
+        return person;
+    }
 }
