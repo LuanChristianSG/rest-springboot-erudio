@@ -11,5 +11,10 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: 
+        dialect:
     show-sql: false
+    open-in-view: false
+logging:
+  level:
+    # root: WARN #so mostra warn e error
+    br.com.erudio: DEBUG

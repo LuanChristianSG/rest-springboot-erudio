@@ -1,6 +1,9 @@
 package br.com.erudio.services;
 
+import br.com.erudio.data.dto.PersonDTO;
 import br.com.erudio.exception.ResourceNotFoundException;
+import static br.com.erudio.mapper.ObjectMapper.parseObject;
+import static br.com.erudio.mapper.ObjectMapper.parseListObjects;
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +27,16 @@ public class PersonServices { //mf=serviceImpl
 
 
 
-    public List<Person> findAll(){
+    public List<PersonDTO> findAll(){
         logger.info("Finding all People!");
-        /*
-        List<Person> persons = new ArrayList<Person>();
-        for (int i = 0; i < 8; i++) {
-            Person person = mockPerson(i);
-            persons.add(person);
-        }*/
 
-        return repository.findAll();
+        return parseListObjects(repository.findAll(), PersonDTO.class); //ObjectMapper.class
     }
 
-    private Person mockPerson(int i) {
+    private PersonDTO mockPerson(int i) {
         logger.info("Mocking one Person");
 
-        Person person = new Person();
+        PersonDTO person = new PersonDTO();
         person.setId(counter.incrementAndGet());
         person.setFirstName("FirstName " + i);
         person.setLastName("LastName " + i);
@@ -48,19 +45,23 @@ public class PersonServices { //mf=serviceImpl
         return person;
     }
 
-    public Person findById(Long id){
+    public PersonDTO findById(Long id){
         logger.info("Finding one Person!");
 
-        return repository.findById(id)
+        var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID")); //porque repository.findById nao retorna um Person e sim um Optional do tipo Person
+        return parseObject(entity, PersonDTO.class);
+
     }
 
-    public Person create(Person person){
+    public PersonDTO create(PersonDTO person){
         logger.info("Creating one Person!");
-        return repository.save(person);
+        var entity = parseObject(person, Person.class);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person){
+    public PersonDTO update(PersonDTO person){
         logger.info("Creating one Person!");
 
         Person entity = repository.findById(person.getId())
@@ -71,7 +72,7 @@ public class PersonServices { //mf=serviceImpl
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(person);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id){

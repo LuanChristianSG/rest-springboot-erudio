@@ -1,33 +1,21 @@
-package br.com.erudio.model;
+package br.com.erudio.data.dto;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name="person")
-public class Person implements Serializable {
+public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="first_name", nullable=false, length=80)
     private String firstName;
-
-    @Column(name="last_name", nullable=false, length=80)
     private String lastName;
-
-    @Column(nullable = false, length=100) //o certo não é ser texto?
     private String address;
-
-    @Column(nullable = false, length=6) //nao especificar nome significa que é igual
     private String gender;
 
-    public Person() {
+    public PersonDTO() {
 
     }
 
@@ -73,7 +61,7 @@ public class Person implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Person person)) return false;
+        if (!(o instanceof PersonDTO person)) return false;
         return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
     }
 
