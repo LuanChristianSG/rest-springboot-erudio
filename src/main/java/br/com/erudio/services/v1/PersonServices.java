@@ -1,6 +1,6 @@
-package br.com.erudio.services;
+package br.com.erudio.services.v1;
 
-import br.com.erudio.data.dto.PersonDTO;
+import br.com.erudio.data.dto.v1.PersonDTO;
 import br.com.erudio.exception.ResourceNotFoundException;
 import static br.com.erudio.mapper.ObjectMapper.parseObject;
 import static br.com.erudio.mapper.ObjectMapper.parseListObjects;
@@ -9,14 +9,13 @@ import br.com.erudio.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
 
 
-@Service
+@Service("v1.PersonServices")
 public class PersonServices { //mf=serviceImpl
 
     private final AtomicLong counter = new AtomicLong();// mock counter para ids

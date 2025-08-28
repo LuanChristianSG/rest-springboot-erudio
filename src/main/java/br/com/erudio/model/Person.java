@@ -27,6 +27,10 @@ public class Person implements Serializable {
     @Column(nullable = false, length=6) //nao especificar nome significa que é igual
     private String gender;
 
+    @Column(name="birthday", nullable=true, length=10)
+    private String birthday;
+
+
     public Person() {
 
     }
@@ -69,6 +73,14 @@ public class Person implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     @Override
